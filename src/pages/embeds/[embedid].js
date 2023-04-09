@@ -45,6 +45,7 @@ export default function Embed({decodedString}) {
 			<meta property="og:description" content={decodedString1.get('description')}/>
 			<meta property="og:image" content={decodedString1.get('image')}/>
 			<meta property="og:url" content={decodedString1.get('url')}/>
+			<meta property="og:video" content={decodedString1.get('video')}/>
 		</Head>
 		</>
 	)

@@ -56,6 +56,8 @@ export default function Home() {
 	let [encodedURL, setEncodedURL] = useState('')//encodeURIComponent(`${window.location.protocol}//${window.location.host}/embeds/${text}?image=${image}&description=${description}&url=${url}`))
 const [baseUrl1, setBaseUrl] = useState('');
 
+const [video, setVideo] = useState('')
+
 const [isDisabled, setIsDisabled] = useState(true);
 
   useEffect(() => {
@@ -64,7 +66,7 @@ const [isDisabled, setIsDisabled] = useState(true);
 
 useEffect(() => {
   if (text && description && url) {
-    setEncodedURL(`${baseUrl1}/embeds/${btoa(`?text=${text}&image=${image}&description=${description}&url=${url}`)}`);
+    setEncodedURL(`${baseUrl1}/embeds/${btoa(`?text=${text}&image=${image}&description=${description}&url=${url}&video=${video}`)}`);
     setIsDisabled(false);
   } else {
     setIsDisabled(true);
@@ -103,18 +105,24 @@ setEncodedURL(`${window.location.protocol}//${window.location.host}/embeds/${bto
   navigator.clipboard.writeText(encodedURL);
 }
 
+function handleVideo(event) {
+ setVideo(event.target.value);
+}
+
 	
 	return (
     		<main className="flex min-h-screen flex-col items-center justify-between p-24">
 			<h1 className="text-4xl font-bold">Embed Gen</h1>
 			<p className="text-2xl">Text field:</p>
 			<input type="text" className="text-4xl text-black" onChange={handleTextChange}/>
-			<p className="text-2xl">Image:</p>
+			<p className="text-2xl">Image (Optional):</p>
 			<input type="text" className="text-4xl text-black" onChange={handleImageChange}/>
 			<p className="text-2xl">Description:</p>
 			<textarea type="text" className="text-4xl text-black" onChange={handleDescriptionChange}/>
 			<p className="text-2xl">URL:</p>
 			<input type="text" className="text-4xl text-black" onChange={handleUrlChange}/>
+			<p className="text-2xl">Video (Optional):</p>
+			<input type="text" className="text-4xl text-black" onChange={handleVideo}/>
 			<button className="text-xl bg-blue-500 text-white px-6 py-2 rounded disabled:opacity-50" onClick={handleCopy} disabled={isDisabled}>Copy To Clipboard!</button>
 		</main>
 
