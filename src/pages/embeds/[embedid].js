@@ -9,10 +9,10 @@ export default function Embed() {
 	return (
 		<>
 		<Head>
-			<meta property="og:title" content="test"\>
-			<meta property="og:description" content="pythonplayer123's embed"\>
-			<meta property="og:image" content="https://cdn.discordapp.com/avatars/825691714383511582/ccd32bc68a5466a0c511eba28f3e0532.png?size=4096"\>
-			<meta property="og:url" content="https://junengames.me"\>
+			<meta property="og:title" content="test"/>
+			<meta property="og:description" content="pythonplayer123's embed"/>
+			<meta property="og:image" content="https://cdn.discordapp.com/avatars/825691714383511582/ccd32bc68a5466a0c511eba28f3e0532.png?size=4096"/>
+			<meta property="og:url" content="https://junengames.me"/>
 		</Head>
 		</>
 	)
