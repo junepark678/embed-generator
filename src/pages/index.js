@@ -29,13 +29,14 @@ const [baseUrl1, setBaseUrl] = useState('');
   }, []);
 
 	useEffect(() => {
-		const baseUrl = `${baseUrl1}`;
+		/*const baseUrl = `${baseUrl1}`;
 		const urlParams = new URLSearchParams({
       		image: image, //encodeURIComponent(image),
       		description: description, //encodeURIComponent(description),
       url: url, //encodeURIComponent(url),
-    });
-    setEncodedURL(`${baseUrl}/embeds/${encodeURIComponent(text)}?${urlParams}`);
+    });*/
+setEncodedURL(`${window.location.protocol}//${window.location.host}/embeds/${text}?image=${image}&description=${description}&url=${url}`);
+    //setEncodedURL(`${baseUrl}/embeds/${encodeURIComponent(text)}?${urlParams}`);
   }, [text, image, description, url]);
 
   function handleTextChange(event) {
