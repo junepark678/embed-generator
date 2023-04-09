@@ -112,7 +112,7 @@ setEncodedURL(`${window.location.protocol}//${window.location.host}/embeds/${bto
 			<p className="text-2xl">Image:</p>
 			<input type="text" className="text-4xl text-black" onChange={handleImageChange}/>
 			<p className="text-2xl">Description:</p>
-			<input type="text" className="text-4xl text-black" onChange={handleDescriptionChange}/>
+			<textarea type="text" className="text-4xl text-black" onChange={handleDescriptionChange}/>
 			<p className="text-2xl">URL:</p>
 			<input type="text" className="text-4xl text-black" onChange={handleUrlChange}/>
 			<button className="text-xl bg-blue-500 text-white px-6 py-2 rounded disabled:opacity-50" onClick={handleCopy} disabled={isDisabled}>Copy To Clipboard!</button>
