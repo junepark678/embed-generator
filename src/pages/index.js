@@ -31,9 +31,9 @@ const [baseUrl1, setBaseUrl] = useState('');
 	useEffect(() => {
 		const baseUrl = `${baseUrl1}`;
 		const urlParams = new URLSearchParams({
-      		image: encodeURIComponent(image),
-      		description: encodeURIComponent(description),
-      url: encodeURIComponent(url),
+      		image: image //encodeURIComponent(image),
+      		description: description //encodeURIComponent(description),
+      url: url //encodeURIComponent(url),
     });
     setEncodedURL(`${baseUrl}/embeds/${encodeURIComponent(text)}?${urlParams}`);
   }, [text, image, description, url]);
