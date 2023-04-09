@@ -1,6 +1,7 @@
 import {useRouter} from 'next/router'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
+import Image from 'next/image'
 
 function base52Decode(encoded) {
   const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -47,6 +48,11 @@ export default function Embed({decodedString}) {
 			<meta property="og:url" content={decodedString1.get('url')}/>
 			<meta property="og:video" content={decodedString1.get('video')}/>
 		</Head>
+		<p>Title: {decodedString1.get('text')}</p>
+		<p>Description: {decodedString1.get('description')}</p>
+		<a href={decodedString1.get('url')}><p>URL: {decodedString1.get('url')}</p></a>
+		<p>Image: <img src={decodedString1.get('image')}/></p>
+
 		</>
 	)
 }
