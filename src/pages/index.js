@@ -56,22 +56,33 @@ export default function Home() {
 	let [encodedURL, setEncodedURL] = useState('')//encodeURIComponent(`${window.location.protocol}//${window.location.host}/embeds/${text}?image=${image}&description=${description}&url=${url}`))
 const [baseUrl1, setBaseUrl] = useState('');
 
+const [isDisabled, setIsDisabled] = useState(true);
+
   useEffect(() => {
     setBaseUrl(window.location.protocol + '//' + window.location.host);
   }, []);
 
+useEffect(() => {
+  if (text && description && url) {
+    setEncodedURL(`${baseUrl1}/embeds/${btoa(`?text=${text}&image=${image}&description=${description}&url=${url}`)}`);
+    setIsDisabled(false);
+  } else {
+    setIsDisabled(true);
+  }
+}, [baseUrl1, text, image, description, url]);
+/*
 	useEffect(() => {
 		/*const baseUrl = `${baseUrl1}`;
 		const urlParams = new URLSearchParams({
       		image: image, //encodeURIComponent(image),
       		description: description, //encodeURIComponent(description),
       url: url, //encodeURIComponent(url),
-    });*/
+    });
 setEncodedURL(`${window.location.protocol}//${window.location.host}/embeds/${btoa(`?text=${text}&image=${image}&description=${description}&url=${url}`)}`);
 		console.log(encodedURL)
     //setEncodedURL(`${baseUrl}/embeds/${encodeURIComponent(text)}?${urlParams}`);
   }, [text, image, description, url]);
-
+*/
   function handleTextChange(event) {
     setText(event.target.value);
   }
@@ -87,6 +98,11 @@ setEncodedURL(`${window.location.protocol}//${window.location.host}/embeds/${bto
   function handleUrlChange(event) {
     setUrl(event.target.value);
   }
+
+	function handleCopy() {
+  navigator.clipboard.writeText(encodedURL);
+}
+
 	
 	return (
     		<main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -99,7 +115,7 @@ setEncodedURL(`${window.location.protocol}//${window.location.host}/embeds/${bto
 			<input type="text" className="text-4xl text-black" onChange={handleDescriptionChange}/>
 			<p className="text-2xl">URL:</p>
 			<input type="text" className="text-4xl text-black" onChange={handleUrlChange}/>
-			<CopyToClipboard text={encodedURL}/>
+			<button className="text-xl bg-blue-500 text-white px-6 py-2 rounded disabled:opacity-50" onClick={handleCopy} disabled={isDisabled}>Copy To Clipboard!</button>
 		</main>
 
   	)
