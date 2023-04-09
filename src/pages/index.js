@@ -11,6 +11,38 @@ export const getServerSideProps = async () => {
   }
 }
 
+function CopyToClipboard(props) {
+  const [copySuccess, setCopySuccess] = useState(false)
+
+  function handleCopyClick() {
+    navigator.clipboard.writeText(props.text)
+    setCopySuccess(true)
+  }
+
+  return (
+    <div>
+      <button onClick={handleCopyClick}>Copy to clipboard</button>
+      {copySuccess && <span style={{color: 'green'}}>Copied to clipboard!</span>}
+    </div>
+  )
+}
+/*
+function base52Encode(str) {
+  const codeUnits = Array.from(str).map(c => BigInt(c.charCodeAt(0)));
+  let num = 0n;
+  for (let i = 0; i < codeUnits.length; i++) {
+    num = num * 256n + codeUnits[i];
+  }
+  let base52 = '';
+  while (num > 0) {
+    let remainder = num % 52n;
+    num = (num - remainder) / 52n;
+    base52 = String.fromCharCode(Number(remainder) + (remainder < 26n ? 65 : 71)) + base52;
+  }
+  return base52 || '0';
+}
+*/
+
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
@@ -35,7 +67,8 @@ const [baseUrl1, setBaseUrl] = useState('');
       		description: description, //encodeURIComponent(description),
       url: url, //encodeURIComponent(url),
     });*/
-setEncodedURL(`${window.location.protocol}//${window.location.host}/embeds/${text}?image=${image}&description=${description}&url=${url}`);
+setEncodedURL(`${window.location.protocol}//${window.location.host}/embeds/${btoa(`?text=${text}&image=${image}&description=${description}&url=${url}`)}`);
+		console.log(encodedURL)
     //setEncodedURL(`${baseUrl}/embeds/${encodeURIComponent(text)}?${urlParams}`);
   }, [text, image, description, url]);
 
@@ -66,7 +99,7 @@ setEncodedURL(`${window.location.protocol}//${window.location.host}/embeds/${tex
 			<input type="text" className="text-4xl text-black" onChange={handleDescriptionChange}/>
 			<p className="text-2xl">URL:</p>
 			<input type="text" className="text-4xl text-black" onChange={handleUrlChange}/>
-			<p className="text-2xl">{encodedURL}</p>
+			<CopyToClipboard text={encodedURL}/>
 		</main>
 
   	)
