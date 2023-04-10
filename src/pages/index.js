@@ -68,7 +68,7 @@ const [isDisabled, setIsDisabled] = useState(true);
 useEffect(() => {
   if (text && description && url) {
     setEncodedURL(`${baseUrl1}/embeds/${btoa(`?text=${text}&image=${image}&description=${description}&url=${url}&video=${video}`)}`);
-    setEncodedURL(`${baseUrl1}/twitter/${btoa(`?text=${text}&image=${image}&description=${description}&url=${url}&video=${video}`)}`);
+    setEncodedTwitterURL(`${baseUrl1}/twitter/${btoa(`?text=${text}&image=${image}&description=${description}&url=${url}&video=${video}`)}`);
 
 	  setIsDisabled(false);
   } else {
