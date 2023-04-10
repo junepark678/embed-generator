@@ -55,6 +55,7 @@ export default function Home() {
 
 	let [encodedURL, setEncodedURL] = useState('')//encodeURIComponent(`${window.location.protocol}//${window.location.host}/embeds/${text}?image=${image}&description=${description}&url=${url}`))
 const [baseUrl1, setBaseUrl] = useState('');
+	let [encodedTwitterURL, setEncodedTwitterURL] = useState('')
 
 const [video, setVideo] = useState('')
 
@@ -67,7 +68,9 @@ const [isDisabled, setIsDisabled] = useState(true);
 useEffect(() => {
   if (text && description && url) {
     setEncodedURL(`${baseUrl1}/embeds/${btoa(`?text=${text}&image=${image}&description=${description}&url=${url}&video=${video}`)}`);
-    setIsDisabled(false);
+    setEncodedURL(`${baseUrl1}/twitter/${btoa(`?text=${text}&image=${image}&description=${description}&url=${url}&video=${video}`)}`);
+
+	  setIsDisabled(false);
   } else {
     setIsDisabled(true);
   }
@@ -104,6 +107,10 @@ setEncodedURL(`${window.location.protocol}//${window.location.host}/embeds/${bto
 	function handleCopy() {
   navigator.clipboard.writeText(encodedURL);
 }
+	
+		function handleTwitterCopy() {
+  navigator.clipboard.writeText(encodedTwitterURL);
+}
 
 function handleVideo(event) {
  setVideo(event.target.value);
@@ -123,7 +130,8 @@ function handleVideo(event) {
 			<input type="text" className="text-4xl text-black" onChange={handleUrlChange}/>
 			<p className="text-2xl">Video (Optional):</p>
 			<input type="text" className="text-4xl text-black" onChange={handleVideo}/>
-			<button className="text-xl bg-blue-500 text-white px-6 py-2 rounded disabled:opacity-50" onClick={handleCopy} disabled={isDisabled}>Copy To Clipboard!</button>
+			<button className="text-xl bg-blue-500 text-white px-6 py-2 rounded disabled:opacity-50" onClick={handleCopy} disabled={isDisabled}>Copy Open Graph To Clipboard!</button>
+			<button className="text-xl bg-blue-500 text-white px-6 py-2 rounded disabled:opacity-50" onClick={handleTwitterCopy} disabled={isDisabled}>Copy Twitter To Clipboard!</button>
 		</main>
 
   	)
