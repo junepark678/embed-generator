@@ -42,11 +42,11 @@ export default function Embed({decodedString}) {
 	return (
 		<>
 		<Head>
-      <meta property="twitter:card" content="summary_large_image"/>
-			<meta property="twitter:title" content={decodedString1.get('text')}/>
-      <meta property="twitter:site" content="@pythonplayer12"/>
-			<meta property="twitter:description" content={decodedString1.get('description')}/>
-			<meta property="twitter:image" content={decodedString1.get('image')}/>
+      <meta property="twitter:card" content="summary_large_image" />
+			<meta property="twitter:title" content={decodedString1.get('text')} />
+      <meta property="twitter:site" content="@pythonplayer12" />
+			<meta property="twitter:description" content={decodedString1.get('description')} />
+			<meta property="twitter:image" content={decodedString1.get('image')} />
 		</Head>
 		<p>Title: {decodedString1.get('text')}</p>
 		<p>Description: {decodedString1.get('description')}</p>
